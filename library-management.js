@@ -22,11 +22,11 @@ class LibraryItem {
     checkOut() {
         //let toCheckout = this.lookupItem() -code for something I'm experimenting with
         if (this.isAvailable) {
-            console.log(`You have checked out; ${this.title}`)
+            console.log(`You have checked out: ${this.title}`)
             
             return this.isAvailable = false;
         } else {
-            console.log(`${this.name} is not available to be checked out at this time.`)
+            console.log(`${this.title} is not available to be checked out at this time.`)
         }
     }
 
@@ -36,7 +36,7 @@ class LibraryItem {
             console.log(`You have returned; ${this.title}`)
             return this.isAvailable = true;
         } else {
-            console.log(`${this.name} is not checked out at this time.`)
+            console.log(`${this.title} is not checked out at this time.`)
         }
 
     }
@@ -82,9 +82,11 @@ let hyperboleAndAHalf = new Book("Hyperbole and a Half", 1, true, "Allie Brosch"
 let fineWoodworking = new Magazine("Fine Woodworking", 2, true, 23);
 let debs = new DVD("D.E.B.S", 3, true, "That Person", 90);
 
-hyperboleAndAHalf.toCheckout()
+hyperboleAndAHalf.checkOut();
+hyperboleAndAHalf.checkOut();
 
-// console.log(book1.checkOut());
-// console.log(book1);
-// console.log(magazine1);
-// console.log(dvd1);
+console.log(hyperboleAndAHalf.author);
+console.log(debs.duration);
+console.log(fineWoodworking.issueNumber);
+console.log(fineWoodworking.issueNumber);
+
