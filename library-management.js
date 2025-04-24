@@ -20,7 +20,14 @@ class LibraryItem {
     // }
 
     checkOut() {
-        //let toCheckout = this.lookupItem() -code for something I'm experimenting with
+        if (this instanceof DVD){ // check class
+            if (this.isAvailable) { // if class is DVD
+            this.copies -= 1;
+                if (this.copies === 0){
+                this.isAvailable = false;
+                }
+            }
+        }
         if (this.isAvailable) {
             console.log(`You have checked out: ${this.title}`)
             
@@ -57,10 +64,11 @@ class Book extends LibraryItem {
 class DVD extends LibraryItem {
 
     // Constructor
-    constructor (title, id, isAvailable, director, duration) {
+    constructor (title, id, isAvailable, director, duration, copies = 1) {
         super("dvd", title, id, isAvailable);
         this.director = director;
         this.duration = duration;
+        this.copies = copies;
     } 
 
 
@@ -80,13 +88,16 @@ class Magazine extends LibraryItem {
 
 let hyperboleAndAHalf = new Book("Hyperbole and a Half", 1, true, "Allie Brosch", ["comedy", "self help"]);
 let fineWoodworking = new Magazine("Fine Woodworking", 2, true, 23);
-let debs = new DVD("D.E.B.S", 3, true, "That Person", 90);
+let debs = new DVD("D.E.B.S", 3, true, "That Person", 90, 5);
 
-hyperboleAndAHalf.checkOut();
-hyperboleAndAHalf.checkOut();
+// hyperboleAndAHalf.checkOut();
+// hyperboleAndAHalf.checkOut();
+console.log(debs.copies)
+debs.checkOut();
+console.log(debs.copies)
 
-console.log(hyperboleAndAHalf.author);
-console.log(debs.duration);
-console.log(fineWoodworking.issueNumber);
-console.log(fineWoodworking.issueNumber);
+// console.log(hyperboleAndAHalf.author);
+// console.log(debs.duration);
+// console.log(fineWoodworking.issueNumber);
+// console.log(fineWoodworking.issueNumber);
 
