@@ -6,9 +6,9 @@ class LibraryItem {
         this.title = title;
         this.id = id;
         this.isAvailable = isAvailable;        
-        //this.inventory = inventory.push(this); -code for something I'm experimenting with
+    //     this.inventory = inventory.push(this); -code for something I'm experimenting with
 
-    }
+     }
 
     // Methods
         
@@ -20,19 +20,16 @@ class LibraryItem {
     // }
 
     checkOut() {
-        if (this instanceof DVD){ // check class
-            if (this.isAvailable) { // if class is DVD
-            this.copies -= 1;
-                if (this.copies === 0){
-                this.isAvailable = false;
-                }
-            }
-        }
         if (this.isAvailable) {
-            console.log(`You have checked out: ${this.title}`)
-            
-            return this.isAvailable = false;
-        } else {
+            if (this instanceof DVD){ // check class                
+                this.copies -= 1;
+                    if (this.copies === 0){
+                    this.isAvailable = false;
+                    }
+        }        
+        console.log(`You have checked out: ${this.title}`);            
+        return this.isAvailable = false;}        
+        else {
             console.log(`${this.title} is not available to be checked out at this time.`)
         }
     }
@@ -40,6 +37,8 @@ class LibraryItem {
     returnItem() {
         // let toReturn = this.lookupItem(input)-code for something I'm experimenting with
         if (!this.isAvailable) {
+            if (this instanceof DVD){ // check class                
+                this.copies += 1;}                    
             console.log(`You have returned; ${this.title}`)
             return this.isAvailable = true;
         } else {
@@ -84,17 +83,23 @@ class Magazine extends LibraryItem {
 
    
 }
-// let inventory = [];-code for something I'm experimenting with
+//let inventory = [];-code for something I'm experimenting with
 
 let hyperboleAndAHalf = new Book("Hyperbole and a Half", 1, true, "Allie Brosch", ["comedy", "self help"]);
 let fineWoodworking = new Magazine("Fine Woodworking", 2, true, 23);
-let debs = new DVD("D.E.B.S", 3, true, "That Person", 90, 5);
+let debs = new DVD("D.E.B.S", 3, true, "That Person", 90, 1);
 
 // hyperboleAndAHalf.checkOut();
 // hyperboleAndAHalf.checkOut();
-console.log(debs.copies)
+console.log(debs.copies);
 debs.checkOut();
-console.log(debs.copies)
+console.log(debs.copies);
+hyperboleAndAHalf.checkOut();
+debs.returnItem();
+console.log(debs.copies);
+hyperboleAndAHalf.returnItem();
+hyperboleAndAHalf.returnItem();
+
 
 // console.log(hyperboleAndAHalf.author);
 // console.log(debs.duration);
