@@ -20,25 +20,17 @@ class LibraryItem {
     // }
 
     checkOut() {
-        if (this.isAvailable) {
-            if (this instanceof DVD){ // check class                
-                this.copies -= 1;
-                    if (this.copies === 0){
-                    this.isAvailable = false;
-                    }
-        }        
-        console.log(`You have checked out: ${this.title}`);            
-        return this.isAvailable = false;}        
-        else {
+        if (this.isAvailable) {       
+            console.log(`You have checked out: ${this.title}`);            
+            return this.isAvailable = false;        
+        } else {
             console.log(`${this.title} is not available to be checked out at this time.`)
         }
     }
 
     returnItem() {
         // let toReturn = this.lookupItem(input)-code for something I'm experimenting with
-        if (!this.isAvailable) {
-            if (this instanceof DVD){ // check class                
-                this.copies += 1;}                    
+        if (!this.isAvailable) {                   
             console.log(`You have returned; ${this.title}`)
             return this.isAvailable = true;
         } else {
@@ -56,8 +48,6 @@ class Book extends LibraryItem {
         this.author = author;
         this.genre = genre;
     } 
-
-    // Method
 }
 
 class DVD extends LibraryItem {
@@ -70,6 +60,30 @@ class DVD extends LibraryItem {
         this.copies = copies;
     } 
 
+    // Methods
+    checkOut() {
+        if (this.isAvailable) {               
+            this.copies -= 1;
+                if (this.copies === 0){
+                    this.isAvailable = false;
+                }
+            console.log(`You have checked out: ${this.title}`);    
+        } else {
+            console.log(`${this.title} is not available to be checked out at this time.`)
+        }
+    }
+
+    returnItem() {
+        // let toReturn = this.lookupItem(input)-code for something I'm experimenting with
+        if (!this.isAvailable) {               
+            this.copies += 1;                  
+            console.log(`You have returned; ${this.title}`)
+            return this.isAvailable = true;
+        } else {
+            console.log(`${this.title} is not checked out at this time.`)
+        }
+
+    }
 
 }
 
